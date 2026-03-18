@@ -26,6 +26,17 @@ public class Curso(){
         alumnoEncontrado = listAlumnos[i];
         return alumnoEncontrado;
     }
+    public string buscarAlumnoXDni(int dni){
+        Alumno alumnoEncontrado = buscarAlumno(int dni);
+        string resu = "";
+        if (alumnoEncontrado != null){
+            resu = alumnoEncontrado.getNombre();
+        }
+        else{
+            resu = "Alumno no se pudo encontrar."
+        }
+        return resu;
+    }
     public string agregarFaltas(int dni, double num){
         resu = "";
         Alumno alumnoEncontrado = buscarAlumno(int dni);

@@ -10,4 +10,7 @@ public class Alumno(int dn, string nom){
     public bool estaLibre(){
         return this.cantidadFaltas > 15;
     }
+    public string getNombre(){
+        return this.nombre;
+    }
 }
