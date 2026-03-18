@@ -1,0 +1,10 @@
+public class Alumno(int dn, string nom){
+    public Alumno(){
+    private int dni = dn;
+    private string nombre = nom;
+    private double cantidadFaltas = 0;
+    }
+    public addFaltas(double num){
+        this.cantidadFaltas += num;
+    }
+    }

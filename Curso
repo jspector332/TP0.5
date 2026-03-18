@@ -1,0 +1,41 @@
+public class Curso(){
+    private List<Alumno> listAlumnos;
+    
+    public Curso(){
+        listAlumnos = new List <Alumno>();
+    }
+    public string agregarAlumno(int dni, string nombre){
+        string resu = "";
+        Alumno alumnoEncontrado = buscarAlumno(int dni);
+        if (alumnoEncontrado == null){
+            listAlumnos.Add(new Alumno(dni, nombre))
+            resu = "Alumno fue agregado con exito."
+        }
+        else{
+            resu = "Este dni ya esta en uso / No se pudo agregar."
+        }
+        return resu;
+    }
+    private Alumno buscarAlumno(int dniABuscar){
+        Alumno alumnoEncontrado = null;
+        int i = 0;
+
+        while (i < listAlumnos.Count && !listAlumnos[i].Equals(dniABuscar))
+        i++;
+        if (i < listAlumnos.Count)
+        alumnoEncontrado = listAlumnos[i];
+        return alumnoEncontrado;
+    }
+    public string agregarFaltas(int dni, double num){
+        resu = "";
+        Alumno alumnoEncontrado = buscarAlumno(int dni);
+        if (alumnoEncontrado != null){
+            alumnoEncontrado.addFaltas(num);
+            resu = "Las faltas fueron agregadas correctamente."
+        }
+        else{
+            resu = "No se pudieron agregar las faltas."
+        }
+        return resu;
+    }
+}
