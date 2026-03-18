@@ -38,4 +38,15 @@ public class Curso(){
         }
         return resu;
     }
+    public List<Alumno> mostrarAlumnos(){
+        return listAlumnos;
+    }
+    public List<Alumno> mostrarAlumnosLibres(){
+        List<Alumno> listaDisp = new list <Alumno>();
+        foreach (Alumno alumno in listAlumnos){
+            if (alumno.estaLibre())
+            listaDisp.Add(alumno);
+        }
+        return listaDisp;
+    }
 }

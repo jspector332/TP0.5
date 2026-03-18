@@ -4,7 +4,10 @@ public class Alumno(int dn, string nom){
     private string nombre = nom;
     private double cantidadFaltas = 0;
     }
-    public addFaltas(double num){
+    public void addFaltas(double num){
         this.cantidadFaltas += num;
     }
+    public bool estaLibre(){
+        return this.cantidadFaltas > 15;
     }
+}
