@@ -8,25 +8,66 @@ class Program
         Curso curso = new Curso();
         int menu;
         do{
-            menu = ingresarMenu("Bienvenido. Ingrese una opcion: \n1.Agregar alumnos \n2.Buscar alumno por dni\n3.Agregar faltas\n4.Mostrar todos los alumnos.\n5.Salir.");
+            menu = ingresarMenu("Bienvenido. Ingrese una opcion: \n1.Agregar alumnos \n2.Buscar alumno por dni\n3.Agregar faltas\n4.Mostrar todos los alumnos.\n5.Mostrar a todos los alumnos libres.\n6.Salir.");
             Console.Clear();
             switch (menu){
                 case 1:
-                string tipo = ingresarString("Ingresar tipo de vehiculo: ");
-                estacionamiento.agregarVehiculo(tipo);
+                string alumno = ingresarString("Ingresar nombre del alumno a agregar: ");
+                int dni = ingresarNum("Ingresar dni del alumno a agregar: ")
+                Console.WriteLine(curso.agregarAlumno(dni, alumno))
                 break;
                 case 2:
-                estacionamiento.obtenerDisponibles();
+                Console.WriteLine(curso.buscarAlumnoXDni(ingresarNum("Ingresar dni del alumno a buscar")))
                 break;
                 case 3:
-                estacionamiento.realizarViaje(ingresarNum("Ingresa el id del auto a simular: "), ingresarDouble("Ingresa la cantidad de KM a simular: "));
+                Console.WriteLine(curso.agregarFaltas(ingresarNum("Ingresar el dni del alumno que falto: "), ingresarFaltas("Ingresar cantidad de faltas a agregar: ")));
                 break;
                 case 4:
-                estacionamiento.cargaMasiva();
+                foreach(Alumno alumno in curso.mostrarAlumnos()){
+                    Console.WriteLine(alumno.mostrarInfo());
+                }
                 break;
                 case 5:
+                foreach(Alumno alumno2 in curso.mostrarAlumnosLibres()){
+                    Console.WriteLine(alumno2.mostrarInfo());
+                }
+                break;
+                case 6:
                 break;
             }
         }while (menu != 5);
+
+        private int ingresarMenu(string v){
+            int n;
+            Console.WriteLine(v);
+            n = int.Parse(Console.ReadLine());
+            while (n < 1 && n > 6){
+                Console.WriteLine("Numero fuera del rango. Ingresar de nuevo: ");
+                n = int.Parse(Console.ReadLine());
+            }
+            return n;
+        }
+        private string ingresarString(string v){
+            string s;
+            Console.WriteLine(v);
+            s = Console.ReadLine();
+            return s;
+        }
+        private int ingresarNum(string v){
+            int n;
+            Console.WriteLine(v);
+            n = int.Parse(Console.ReadLine());
+            return n;
+        }
+        private double ingresarFaltas(string v){
+            double d;
+            Console.WriteLine(v);
+            d = double.Parse(Console.ReadLine());
+            while (d != 0.5 && d != 1){
+                Console.WriteLine("La cantidad ingresada no es valida. Ingresar una o media falta: ");
+                d = double.Parse(Console.ReadLine());
+            }
+            return d;
+        }
     }
 }    

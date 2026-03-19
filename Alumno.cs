@@ -13,4 +13,7 @@ public class Alumno(int dn, string nom){
     public string getNombre(){
         return this.nombre;
     }
+    public string mostrarInfo(){
+        return "DNI: " + this.dni + "\nNombre: " + this.nombre + "\nFaltas: " + this.cantidadFaltas + "\nEstado: " + (cantidadFaltas > 15) ? "Libre" : "No libre";
+    }
 }
