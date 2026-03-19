@@ -1,4 +1,6 @@
-public class Curso(){
+namespace TP0;
+
+public class Curso{
     private List<Alumno> listAlumnos;
     
     public Curso(){
@@ -6,13 +8,13 @@ public class Curso(){
     }
     public string agregarAlumno(int dni, string nombre){
         string resu = "";
-        Alumno alumnoEncontrado = buscarAlumno(int dni);
+        Alumno alumnoEncontrado = buscarAlumno(dni);
         if (alumnoEncontrado == null){
-            listAlumnos.Add(new Alumno(dni, nombre))
-            resu = "Alumno fue agregado con exito."
+            listAlumnos.Add(new Alumno(dni, nombre));
+            resu = "Alumno fue agregado con exito.";
         }
         else{
-            resu = "Este dni ya esta en uso / No se pudo agregar."
+            resu = "Este dni ya esta en uso / No se pudo agregar.";
         }
         return resu;
     }
@@ -20,32 +22,32 @@ public class Curso(){
         Alumno alumnoEncontrado = null;
         int i = 0;
 
-        while (i < listAlumnos.Count && !listAlumnos[i].Equals(dniABuscar))
+        while (i < listAlumnos.Count && !listAlumnos[i].esIgual(dniABuscar))
         i++;
         if (i < listAlumnos.Count)
         alumnoEncontrado = listAlumnos[i];
         return alumnoEncontrado;
     }
     public string buscarAlumnoXDni(int dni){
-        Alumno alumnoEncontrado = buscarAlumno(int dni);
+        Alumno alumnoEncontrado = buscarAlumno(dni);
         string resu = "";
         if (alumnoEncontrado != null){
             resu = alumnoEncontrado.getNombre();
         }
         else{
-            resu = "Alumno no se pudo encontrar."
+            resu = "Alumno no se pudo encontrar.";
         }
         return resu;
     }
     public string agregarFaltas(int dni, double num){
-        resu = "";
-        Alumno alumnoEncontrado = buscarAlumno(int dni);
+        string resu = "";
+        Alumno alumnoEncontrado = buscarAlumno(dni);
         if (alumnoEncontrado != null){
             alumnoEncontrado.addFaltas(num);
-            resu = "Las faltas fueron agregadas correctamente."
+            resu = "Las faltas fueron agregadas correctamente.";
         }
         else{
-            resu = "No se pudieron agregar las faltas."
+            resu = "No se pudieron agregar las faltas.";
         }
         return resu;
     }
@@ -53,7 +55,7 @@ public class Curso(){
         return listAlumnos;
     }
     public List<Alumno> mostrarAlumnosLibres(){
-        List<Alumno> listaDisp = new list <Alumno>();
+        List<Alumno> listaDisp = new List <Alumno>();
         foreach (Alumno alumno in listAlumnos){
             if (alumno.estaLibre())
             listaDisp.Add(alumno);

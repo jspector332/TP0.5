@@ -2,7 +2,6 @@
 
 class Program
 {
-    int menu;
     static void Main(string[] args)
     {
         Curso curso = new Curso();
@@ -13,31 +12,37 @@ class Program
             switch (menu){
                 case 1:
                 string alumno = ingresarString("Ingresar nombre del alumno a agregar: ");
-                int dni = ingresarNum("Ingresar dni del alumno a agregar: ")
-                Console.WriteLine(curso.agregarAlumno(dni, alumno))
+                int dni = ingresarNum("Ingresar dni del alumno a agregar: ");
+                Console.WriteLine(curso.agregarAlumno(dni, alumno));
                 break;
                 case 2:
-                Console.WriteLine(curso.buscarAlumnoXDni(ingresarNum("Ingresar dni del alumno a buscar")))
+                Console.WriteLine(curso.buscarAlumnoXDni(ingresarNum("Ingresar dni del alumno a buscar")));
                 break;
                 case 3:
                 Console.WriteLine(curso.agregarFaltas(ingresarNum("Ingresar el dni del alumno que falto: "), ingresarFaltas("Ingresar cantidad de faltas a agregar: ")));
                 break;
                 case 4:
-                foreach(Alumno alumno in curso.mostrarAlumnos()){
-                    Console.WriteLine(alumno.mostrarInfo());
+                foreach(Alumno alumno1 in curso.mostrarAlumnos()){
+                    Console.WriteLine(alumno1.mostrarInfo());
+                }
+                if ((curso.mostrarAlumnos()).Count == 0){
+                    Console.WriteLine("No hay alumnos. ");
                 }
                 break;
                 case 5:
                 foreach(Alumno alumno2 in curso.mostrarAlumnosLibres()){
                     Console.WriteLine(alumno2.mostrarInfo());
                 }
+                if ((curso.mostrarAlumnosLibres()).Count == 0){
+                    Console.WriteLine("No hay alumnos libres. ");
+                }
                 break;
                 case 6:
                 break;
             }
-        }while (menu != 5);
-
-        private int ingresarMenu(string v){
+        }while (menu != 6);
+    }
+        static int ingresarMenu(string v){
             int n;
             Console.WriteLine(v);
             n = int.Parse(Console.ReadLine());
@@ -47,19 +52,19 @@ class Program
             }
             return n;
         }
-        private string ingresarString(string v){
+        static string ingresarString(string v){
             string s;
             Console.WriteLine(v);
             s = Console.ReadLine();
             return s;
         }
-        private int ingresarNum(string v){
+        static int ingresarNum(string v){
             int n;
             Console.WriteLine(v);
             n = int.Parse(Console.ReadLine());
             return n;
         }
-        private double ingresarFaltas(string v){
+        static double ingresarFaltas(string v){
             double d;
             Console.WriteLine(v);
             d = double.Parse(Console.ReadLine());
@@ -69,5 +74,4 @@ class Program
             }
             return d;
         }
-    }
-}    
+}
