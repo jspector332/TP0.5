@@ -1,16 +1,15 @@
 namespace TP0;
 
 public class Curso{
-    private List<Alumno> listAlumnos;
+    private Dictionary<int, Alumno> dicAlumnos;
     
     public Curso(){
-        listAlumnos = new List <Alumno>();
+        dicAlumnos = new Dictionary <int, Alumno>();
     }
     public string agregarAlumno(int dni, string nombre){
         string resu = "";
-        Alumno alumnoEncontrado = buscarAlumno(dni);
-        if (alumnoEncontrado == null){
-            listAlumnos.Add(new Alumno(dni, nombre));
+        if (dicAlumnos.ContainsKey(dni) == false){
+            dicAlumnos.Add(dni, new Alumno(nombre));
             resu = "Alumno fue agregado con exito.";
         }
         else{
@@ -18,32 +17,17 @@ public class Curso{
         }
         return resu;
     }
-    private Alumno buscarAlumno(int dniABuscar){
-        Alumno alumnoEncontrado = null;
-        int i = 0;
-
-        while (i < listAlumnos.Count && !listAlumnos[i].esIgual(dniABuscar))
-        i++;
-        if (i < listAlumnos.Count)
-        alumnoEncontrado = listAlumnos[i];
-        return alumnoEncontrado;
-    }
     public string buscarAlumnoXDni(int dni){
-        Alumno alumnoEncontrado = buscarAlumno(dni);
-        string resu = "";
-        if (alumnoEncontrado != null){
-            resu = alumnoEncontrado.getNombre();
-        }
-        else{
-            resu = "Alumno no se pudo encontrar.";
+        string resu = "No se encontro un alumno con este dni.";
+        if (dicAlumnos.ContainsKey(dni)){
+            resu = dicAlumnos[dni].getNombre();
         }
         return resu;
     }
     public string agregarFaltas(int dni, double num){
         string resu = "";
-        Alumno alumnoEncontrado = buscarAlumno(dni);
-        if (alumnoEncontrado != null){
-            alumnoEncontrado.addFaltas(num);
+        if (dicAlumnos.ContainsKey(dni)){
+            dicAlumnos[dni].addFaltas(num);
             resu = "Las faltas fueron agregadas correctamente.";
         }
         else{
@@ -51,12 +35,12 @@ public class Curso{
         }
         return resu;
     }
-    public List<Alumno> mostrarAlumnos(){
-        return listAlumnos;
+    public Dictionary<int, Alumno> mostrarAlumnos(){
+        return dicAlumnos;
     }
     public List<Alumno> mostrarAlumnosLibres(){
         List<Alumno> listaDisp = new List <Alumno>();
-        foreach (Alumno alumno in listAlumnos){
+        foreach (Alumno alumno in dicAlumnos.Values){
             if (alumno.estaLibre())
             listaDisp.Add(alumno);
         }

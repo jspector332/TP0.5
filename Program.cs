@@ -22,16 +22,18 @@ class Program
                 Console.WriteLine(curso.agregarFaltas(ingresarNum("Ingresar el dni del alumno que falto: "), ingresarFaltas("Ingresar cantidad de faltas a agregar: ")));
                 break;
                 case 4:
-                foreach(Alumno alumno1 in curso.mostrarAlumnos()){
-                    Console.WriteLine(alumno1.mostrarInfo());
+                foreach(KeyValuePair<int, Alumno> alumno1 in curso.mostrarAlumnos()){
+                    Console.WriteLine(alumno1.Key);
+                    Console.WriteLine(alumno1.Value.getNombre());
                 }
                 if ((curso.mostrarAlumnos()).Count == 0){
                     Console.WriteLine("No hay alumnos. ");
                 }
                 break;
                 case 5:
-                foreach(Alumno alumno2 in curso.mostrarAlumnosLibres()){
-                    Console.WriteLine(alumno2.mostrarInfo());
+                foreach(int dni2 in curso.mostrarAlumnosLibres()){
+                    Console.WriteLine(dni2);
+                    Console.WriteLine(curso.mostrarAlumnosLibres()[dni2]);
                 }
                 if ((curso.mostrarAlumnosLibres()).Count == 0){
                     Console.WriteLine("No hay alumnos libres. ");
