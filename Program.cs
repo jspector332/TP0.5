@@ -23,17 +23,16 @@ class Program
                 break;
                 case 4:
                 foreach(KeyValuePair<int, Alumno> alumno1 in curso.mostrarAlumnos()){
-                    Console.WriteLine(alumno1.Key);
-                    Console.WriteLine(alumno1.Value.getNombre());
+                    Console.WriteLine("Dni: " + alumno1.Key);
+                    Console.WriteLine("Nombre: " + alumno1.Value.getNombre());
                 }
                 if ((curso.mostrarAlumnos()).Count == 0){
                     Console.WriteLine("No hay alumnos. ");
                 }
                 break;
                 case 5:
-                foreach(int dni2 in curso.mostrarAlumnosLibres()){
-                    Console.WriteLine(dni2);
-                    Console.WriteLine(curso.mostrarAlumnosLibres()[dni2]);
+                foreach(Alumno alumno2 in curso.mostrarAlumnosLibres()){
+                    Console.WriteLine(alumno2.getNombre());
                 }
                 if ((curso.mostrarAlumnosLibres()).Count == 0){
                     Console.WriteLine("No hay alumnos libres. ");
